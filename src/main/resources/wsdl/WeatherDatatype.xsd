@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://weather.bdd/WeatherDatatype" 
+        elementFormDefault="qualified" 
+        xmlns="http://www.w3.org/2001/XMLSchema" 
+        xmlns:wd="http://weather.bdd/WeatherDatatype">
+    <complexType name="WeatherRequest">
+        <sequence>
+            <element name="ZIP" type="string" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+    <complexType name="WeatherResponse">
+        <sequence>
+            <element name="ReturnCode" type="int"/>
+            <element name="ReturnText" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="WeatherException">
+        <sequence>
+            <element name="ErrorCode" type="int"/>
+            <element name="ErrorText" type="string"/>
+        </sequence>
+    </complexType>
+</schema>
