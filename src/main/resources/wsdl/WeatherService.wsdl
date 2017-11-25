@@ -34,7 +34,7 @@
     </wsdl:portType>
     <wsdl:binding name="WeatherService" type="weather:WeatherService">
         <soap:binding style="document"
-                              transport="http://schemas.xmlsoap.org/soap/http" />
+                      transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="GetWeatherInformation">
             <soap:operation
                 soapAction="http://weather.bdd/WeatherService/GetWeatherInformation" />

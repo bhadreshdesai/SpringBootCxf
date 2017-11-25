@@ -62,12 +62,10 @@
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <version>${version.jaxws}</version>
                 <configuration>
-                    <!-- See http://www.mojohaus.org/jaxws-maven-plugin/wsimport-mojo.html -->
                     <wsdlUrls>
                         <wsdlUrl>src/main/resources/wsdl/WeatherService.wsdl</wsdlUrl>
                     </wsdlUrls>
-                    <sourceDestDir>target/generated-sources/wsdlimport/WeatherService</sourceDestDir>
-                    <!-- For accessing the imported schema, see https://netbeans.org/bugzilla/show_bug.cgi?id=241570 -->
+                    <sourceDestDir>${project.build.directory}/generated-sources/${project.artifactId}</sourceDestDir>
                     <vmArgs>
                         <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                     </vmArgs>
@@ -77,24 +75,6 @@
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>target/generated-sources/wsdlimport/WeatherService</source>
-                            </sources>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

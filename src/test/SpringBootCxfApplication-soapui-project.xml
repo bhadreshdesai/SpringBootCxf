@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="ba6c9e11-2605-4c8f-b6a2-6aee7d247982" activeEnvironment="Default" name="SpringBootCxfApplication" resourceRoot="" soapui-version="5.3.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="f005a775-d684-4aab-89ff-21081e5028fb" wsaVersion="NONE" name="WeatherService" type="wsdl" bindingName="{http://weather.bdd/WeatherService/}WeatherService" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/soapservices/WeatherService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/soapservices/WeatherService?wsdl"><con:part><con:url>http://localhost:8080/soapservices/WeatherService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Weather" targetNamespace="http://weather.bdd/WeatherService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:weather="http://weather.bdd/WeatherService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://weather.bdd/WeatherService/" xmlns:wd="http://weather.bdd/WeatherDatatype">
+      <xsd:import namespace="http://weather.bdd/WeatherDatatype" schemaLocation="http://localhost:8080/soapservices/WeatherService?xsd=WeatherDatatype.xsd"/>
+      <xsd:element name="GetWeatherInformationRequest" type="wd:WeatherRequest"></xsd:element>
+      <xsd:element name="GetWeatherInformationResponse" type="wd:WeatherResponse"></xsd:element>
+      <xsd:element name="GetWeatherInformationFault" type="wd:WeatherException"></xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetWeatherInformationFault">
+    <wsdl:part element="weather:GetWeatherInformationFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationResponse">
+    <wsdl:part element="weather:GetWeatherInformationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationRequest">
+    <wsdl:part element="weather:GetWeatherInformationRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WeatherService">
+    <wsdl:operation name="GetWeatherInformation">
+      <wsdl:input message="weather:GetWeatherInformationRequest"></wsdl:input>
+      <wsdl:output message="weather:GetWeatherInformationResponse"></wsdl:output>
+      <wsdl:fault message="weather:GetWeatherInformationFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WeatherService" type="weather:WeatherService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <soap:operation soapAction="http://weather.bdd/WeatherService/GetWeatherInformation"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Weather">
+    <wsdl:port binding="weather:WeatherService" name="WeatherService">
+      <soap:address location="http://localhost:8080/soapservices/WeatherService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/soapservices/WeatherService?xsd=WeatherDatatype.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="qualified" targetNamespace="http://weather.bdd/WeatherDatatype" xmlns:wd="http://weather.bdd/WeatherDatatype" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="WeatherRequest">
+    <sequence>
+      <element maxOccurs="1" minOccurs="1" name="ZIP" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="WeatherResponse">
+    <sequence>
+      <element name="ReturnCode" type="int"/>
+      <element name="ReturnText" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="WeatherException">
+    <sequence>
+      <element name="ErrorCode" type="int"/>
+      <element name="ErrorText" type="string"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/soapservices/WeatherService</con:endpoint></con:endpoints><con:operation id="5468336f-def5-46c4-b7be-92b37acc44da" isOneWay="false" action="http://weather.bdd/WeatherService/GetWeatherInformation" name="GetWeatherInformation" bindingOperationName="GetWeatherInformation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="64730fdb-9770-4c26-8223-8998854ae3c5" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapservices/WeatherService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://weather.bdd/WeatherService/" xmlns:weat1="http://weather.bdd/WeatherDatatype">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <weat:GetWeatherInformationRequest>
+         <weat1:ZIP>Mumbai</weat1:ZIP>
+      </weat:GetWeatherInformationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://weather.bdd/WeatherService/GetWeatherInformation"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
